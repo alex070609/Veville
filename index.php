@@ -4,7 +4,9 @@ $title = 'Accueil';
 require_once('inc/header.php');
 ?>
 
-<h1>Accueil</h1>
+
+
+
 
 
 <?php

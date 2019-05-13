@@ -22,10 +22,10 @@
                 </li>
                 <?php if( !isConnected() ): ?>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Inscription</a>
+                        <a href="" class="nav-link" data-toggle="modal" data-target="#inscription">Inscription</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Connexion</a>
+                        <a href="" class="nav-link" data-toggle="modal" data-target="#connexion">Connexion</a>
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
@@ -35,7 +35,7 @@
                         <a href="" class="nav-link">Mon compte</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Deconnexion</a>
+                        <a href="<?= URL.'connexion.php?action="deco"' ?>" class="nav-link">Deconnexion</a>
                     </li>
                 <?php endif; ?>
                 <?php if( isAdmin() ):?>
@@ -56,4 +56,49 @@
         </div>
     </nav>
 </header>
+
+<!-- modal d'incription -->
+<div class="modal fade" id="inscription" tabindex="-1" role="dialog" aria-labelledby="modalinscription" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalinscription">Inscription</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="inscription.php" method="POST">
+            
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+        <button type="button" class="btn btn-primary">S'inscrire</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal de connexion -->
+<div class="modal fade" id="connexion" tabindex="-1" role="dialog" aria-labelledby="modalconnexion" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalconnexion">Connexion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="connexion.php" method="POST"></form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+        <button type="button" class="btn btn-primary">Se connecter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <main class="container">
