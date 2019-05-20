@@ -2,5 +2,9 @@
     padding-right: 60px;
 }
 main{
-    min-height: calc(100vh - 80px)
+    min-height: calc(100vh - 140px)
+}
+.pic{
+    width: auto;
+    height: 30px;
 }

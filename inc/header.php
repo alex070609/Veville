@@ -39,14 +39,8 @@
                     </li>
                 <?php endif; ?>
                 <?php if( isAdmin() ):?>
-                    <li class="nav-item dropdown">
-                        <a href="" class="nav-link dropdown-toggle" href="#" id="menuadmin" role="button" data-toggle="dropdown">Admin</a>
-                        <div class="dropdown-menu" aria-labelledby="menuadmin">
-                            <a href="" class="dropdown-item">Gestion Véhicules</a>
-                            <a href="" class="dropdown-item">Gestion Membres</a>
-                            <a href="" class="dropdown-item">Gestion Réservations</a>
-                            <a href="" class="dropdown-item">BackOffice</a>
-                        </div>
+                    <li class="nav-item ">
+                      <a href="<?= URL.'admin/admin.php' ?>" class="nav-link">Admin</a>
                     </li>
                 <?php endif; ?>
                 <li class="nav-item">
@@ -133,3 +127,43 @@
 <?php unset($_SESSION['post_compte']); ?>
 <?php unset($_SESSION['post_inscrip']); ?>
 <main class="container" style="margin-top:60px;">
+
+
+<?php
+  if( $title == 'backoffice' ){
+    if($acc == true){ ?>
+    <div class="row">
+    <?php } ?>
+    <nav class="<?= ($acc == true) ? 'col-md-2 d-none d-md-block' : '' ?> bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav <?= ($acc == true) ? 'flex-column' : 'justify-content-around' ?>">
+          <li class="nav-item">
+            <a class="nav-link active" href="<?= URL . 'admin/admin.php' ?>">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              Dashboard <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= URL. 'admin/commandes.php' ?>">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              Commandes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= URL . 'admin/vehicules.php' ?>">
+              <img src="../photo/car.svg" alt="voiture" class="pic">
+              Véhicules
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= URL . 'admin/membre.php' ?>">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              Clients
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <?php
+  }
+?>
