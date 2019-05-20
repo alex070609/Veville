@@ -18,8 +18,9 @@ if( !empty($_POST) ){
         $message .= '<div class="alert alert-danger">Le pseudo doit comporter entre 3 et 20 caractères (a à z, A à Z, 0 à 9, -, _, .)</div>';
     }
 
-    if( $nb_champs_vide > 0 && $verif_pseudo == false ){
+    if( $nb_champs_vide > 0 || $verif_pseudo == false ){
         $_SESSION['message'] = $message;
+        $_SESSION['post_inscrip'] = $_POST;
         header('location:'.URL);
         exit();
     }
@@ -30,6 +31,7 @@ if( !empty($_POST) ){
         $verif_membre = execReq('SELECT * FROM membre WHERE pseudo=:pseudo', array('pseudo' => $_POST['pseudo']));
         if( $verif_membre->rowCount() > 0 ){
             $_SESSION['message'] = '<div class="alert alert-danger">Ce pseudo est indisponible, merci d\'en choisir un autre</div>';
+            $_SESSION['post_inscrip'] = $_POST;
             header('location:'.URL);
             exit();
         } else {

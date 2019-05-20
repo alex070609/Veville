@@ -24,12 +24,14 @@ if( !empty($_POST) ){
             $membre = $resultat->fetch();
             unset($membre['mdp']); // je retire le champ MDP crypté
             $_SESSION['membre'] = $membre;
+            unset($_SESSION['post_compte']);
             header('location:'.URL.'compte.php');
             exit();
         } else {
             // je n'ai pas trouver l'utilisateur
             $message .= '<div class="alert alert-danger">Erreur sur les identifiants, ou utilisateur introuvable</div>';
             $_SESSION['message'] = $message;
+            $_SESSION['post_compte'] = $_POST;
             header('location:'.URL);
             exit();
         }

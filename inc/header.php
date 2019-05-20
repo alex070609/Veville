@@ -69,9 +69,10 @@
       </div>
       <div class="modal-body">
         <form action="inscription.php" method="POST">
+          <?php  ?>
           <div class="form-row">
             <label for="pseudo">Pseudo</label>
-            <input class="form-control" type="text" name="pseudo" id="pseudo">
+            <input class="form-control" type="text" name="pseudo" id="pseudo" value="<?= (isset($_SESSION['post_inscrip'])) ? $_SESSION['post_inscrip']['pseudo'] : '' ?>">
           </div>
           <div class="form-row">
             <label for="mdp">Mot de passe</label>
@@ -79,13 +80,13 @@
           </div>
           <div class="form-row">
             <label for="nom">Nom</label>
-            <input class="form-control" type="text" name="nom" id="nom">
+            <input class="form-control" type="text" name="nom" id="nom" value="<?= (isset($_SESSION['post_inscrip'])) ? $_SESSION['post_inscrip']['nom'] : '' ?>">
             <label for="prenom">Prenom</label>
-            <input class="form-control" type="text" name="prenom" id="prenom">
+            <input class="form-control" type="text" name="prenom" id="prenom" value="<?= (isset($_SESSION['post_inscrip'])) ? $_SESSION['post_inscrip']['prenom'] : '' ?>">
           </div>
           <div class="form-row">
             <label for="email">Email</label>
-            <input class="form-control" type="email" name="email" id="email">
+            <input class="form-control" type="email" name="email" id="email" value="<?= (isset($_SESSION['post_inscrip'])) ? $_SESSION['post_inscrip']['email'] : '' ?>">
           </div>
           <div class="form-row">
             <label for="civilite">Civilitée</label>
@@ -116,7 +117,7 @@
       <div class="modal-body">
         <form action="connexion.php" method="POST">
           <label for="pseudo">pseudo</label>
-          <input type="text" name="pseudo" id="pseudo" class="form-control">
+          <input type="text" name="pseudo" id="pseudo" class="form-control" value="<?= (isset($_SESSION['post_compte'])) ? $_SESSION['post_compte']['pseudo'] : '' ?>">
           <label for="mdp">Mot de passe</label>
           <input type="password" name="mdp" id="mdp" class="form-control">
           <button type="button" class="btn btn-secondary mt-4 form-control" data-dismiss="modal">Retour</button>
@@ -129,5 +130,6 @@
   </div>
 </div>
 
-
+<?php unset($_SESSION['post_compte']); ?>
+<?php unset($_SESSION['post_inscrip']); ?>
 <main class="container" style="margin-top:60px;">
