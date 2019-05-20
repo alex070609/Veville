@@ -69,12 +69,36 @@
       </div>
       <div class="modal-body">
         <form action="inscription.php" method="POST">
-            
+          <div class="form-row">
+            <label for="pseudo">Pseudo</label>
+            <input class="form-control" type="text" name="pseudo" id="pseudo">
+          </div>
+          <div class="form-row">
+            <label for="mdp">Mot de passe</label>
+            <input class="form-control" type="password" name="mdp" id="mdp">
+          </div>
+          <div class="form-row">
+            <label for="nom">Nom</label>
+            <input class="form-control" type="text" name="nom" id="nom">
+            <label for="prenom">Prenom</label>
+            <input class="form-control" type="text" name="prenom" id="prenom">
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input class="form-control" type="email" name="email" id="email">
+          </div>
+          <div class="form-row">
+            <label for="civilite">Civilitée</label>
+            <select class="form-control" name="civilite" id="civilite">
+              <option value="m">Homme</option>
+              <option value="f">Femme</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-secondary form-control mt-4" data-dismiss="modal">Retour</button>
+          <input type="submit" value="S'inscrire" class="btn btn-primary form-control mt-4">
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
-        <button type="button" class="btn btn-primary">S'inscrire</button>
       </div>
     </div>
   </div>
@@ -90,15 +114,20 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="connexion.php" method="POST"></form>
+        <form action="connexion.php" method="POST">
+          <label for="pseudo">pseudo</label>
+          <input type="text" name="pseudo" id="pseudo" class="form-control">
+          <label for="mdp">Mot de passe</label>
+          <input type="password" name="mdp" id="mdp" class="form-control">
+          <button type="button" class="btn btn-secondary mt-4 form-control" data-dismiss="modal">Retour</button>
+          <input type="submit" class="btn btn-primary mt-4 form-control" value="Se connecter">
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
-        <button type="button" class="btn btn-primary">Se connecter</button>
       </div>
     </div>
   </div>
 </div>
 
 
-<main class="container">
+<main class="container" style="margin-top:60px;">
