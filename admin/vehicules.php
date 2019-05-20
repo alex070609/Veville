@@ -3,6 +3,11 @@ require_once('../inc/init.php');
 $title = 'backoffice';
 $acc = false;
 
+if ( !isAdmin() ){
+    header('location:'.URL.'connexion.php');
+    exit();
+}
+
 // enregistrement d'un produit en BDD
 if( !empty($_POST) ){
     $nb_champs_vides = 0;

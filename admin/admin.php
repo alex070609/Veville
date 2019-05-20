@@ -2,6 +2,11 @@
 require_once('../inc/init.php');
 $title = 'backoffice';
 $acc  = false;
+
+if ( !isAdmin() ){
+    header('location:'.URL.'connexion.php');
+    exit();
+}
 require_once('../inc/header.php');
 ?>
 
