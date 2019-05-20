@@ -32,7 +32,7 @@
                         <a href="" class="nav-link">Mes réservations</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Mon compte</a>
+                        <a href="<?= URL.'compte.php' ?>" class="nav-link">Mon compte</a>
                     </li>
                     <li class="nav-item">
                         <a href="<?= URL.'connexion.php' ?>?action=deconnexion" class="nav-link">Deconnexion</a>

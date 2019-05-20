@@ -4,7 +4,7 @@ $title = 'backoffice';
 $acc  = false;
 
 if ( !isAdmin() ){
-    header('location:'.URL.'connexion.php');
+    header('location:'.URL);
     exit();
 }
 require_once('../inc/header.php');
