@@ -35,7 +35,7 @@
                         <a href="" class="nav-link">Mon compte</a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= URL.'connexion.php?action="deco"' ?>" class="nav-link">Deconnexion</a>
+                        <a href="<?= URL.'connexion.php' ?>?action=deconnexion" class="nav-link">Deconnexion</a>
                     </li>
                 <?php endif; ?>
                 <?php if( isAdmin() ):?>

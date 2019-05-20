@@ -1,12 +1,16 @@
 <?php
+require_once('inc/init.php');
 
 if( isset($_GET['action']) && $_GET['action'] == 'deconnexion' ){
     //session_destroy();
     unset($_SESSION['membre']);
+    $message .= '<div class="alert alert-success">Vous vous êtes déconnecté</div>';
+    $_SESSION['message'] = $message;
     header('location:'.URL);
     exit();
 }
 
+$message = '';
 if( !empty($_POST) ){
     // le formulaire est posté
     if( !empty($_POST['pseudo']) && !empty($_POST['mdp']) ){
@@ -22,19 +26,17 @@ if( !empty($_POST) ){
             $_SESSION['membre'] = $membre;
             header('location:'.URL.'compte.php');
             exit();
+        } else {
+            // je n'ai pas trouver l'utilisateur
+            $message .= '<div class="alert alert-danger">Erreur sur les identifiants, ou utilisateur introuvable</div>';
+            $_SESSION['message'] = $message;
+            header('location:'.URL);
+            exit();
         }
+    } else {
+        $message .= '<div class="alert alert-danger">Merci de compléter tout les champs</div>';
+        $_SESSION['message'] = $message;
+        header('location:'.URL);
+        exit();
     }
 }
-    
-    
-    /*
-    
-    } else {
-            // je n'ai pas trouver l'utilisateur
-            $content .= '<div class="alert alert-danger">Erreur sur les identifiants, ou utilisateur introuvable</div>';
-        }
-    } else {
-        $content .= '<div class="alert alert-danger">Merci de compléter tout les champs</div>';
-    }
-
-    */
