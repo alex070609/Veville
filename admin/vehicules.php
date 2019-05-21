@@ -25,7 +25,7 @@ if( !empty($_POST) ){
     $photo_bdd = $_POST['photo_courante'] ?? '';
     
     if( !empty($_FILES['photo']['name']) ){
-        $photo_bdd = $_POST['marque']. $_POST['modele'] . '_' . $_FILES['photo']['name'];
+        $photo_bdd = $_POST['marque'] . $_POST['modele'] . '_' . $_POST['idvehicule'] . '_' . $_FILES['photo']['name'];
         $dossier_photo = $_SERVER['DOCUMENT_ROOT'] . URL . 'photo/vehicule/';
         $ext_auto = ['image/jpeg', 'image/png', 'image/gif'];
 
