@@ -18,7 +18,6 @@ if( !empty($_POST) ){
     }
     if( $nb_champs_vides > 0 ){
         $content .= '<div class="alert alert-danger">Merci de remplir les '.$nb_champs_vides.' champ(s) manquant(s)</div>';
-        
     }
 
     //gérer la photo
