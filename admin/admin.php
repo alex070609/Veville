@@ -15,6 +15,7 @@ require_once('../inc/header.php');
     <div role="main" class="px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Récapitulatif des ventes</h1>
+        <small>10 dernières commandes</small>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group mr-2">
             <button type="button" class="btn btn-sm btn-outline-secondary">Partager</button>
@@ -39,12 +40,20 @@ require_once('../inc/header.php');
                         ?> <th>Membre</th> <?php
                         continue;
                     }
+                    if( $colonne['name'] == "date_heure_depart" ){
+                        ?> <th>Date de début</th> <?php
+                        continue;
+                    }
+                    if( $colonne['name'] == "date_heure_fin" ){
+                        ?> <th>Date de fin</th> <?php
+                        continue;
+                    }
                 ?>
                     <th><?= ucfirst($colonne['name']) ?></th>
                 <?php
                 }
-                ?> <th>Voir</th> <?php
-            } ?>
+              } ?>
+              <th>Voir</th>
             </tr>
           </thead>
           <tbody>
@@ -54,7 +63,7 @@ require_once('../inc/header.php');
                         if($key == "vehicule_idvehicule"){
                             continue;
                         }
-                        if($key == "vehicule_idagence"){
+                        if($key == "vehicule_idagences"){
                             continue;
                         }
                         if($key == 'membre_idmembre'){
@@ -66,8 +75,8 @@ require_once('../inc/header.php');
                         }?>
                         <td><?= $value ?></td><?php
                     }
-                    ?> <td>Voir</td> <?php
-                  ?></tr><?php
+                    ?><td>Voir</td><?php
+                    ?></tr><?php
                 } ?>
           </tbody>
         </table>
@@ -89,23 +98,21 @@ require_once('../inc/header.php');
       type: 'line',
       data: {
         labels: [
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          ''
+          <?php
+            $commandes = execReq( "SELECT * FROM commande ORDER BY idcommande DESC LIMIT 10");  
+            while( $commande = $commandes->fetch() ){
+              echo $commande['idcommande'].',';
+            }
+          ?>
         ],
         datasets: [{
           data: [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+            <?php
+              $commandes = execReq( "SELECT * FROM commande ORDER BY idcommande DESC LIMIT 10");  
+              while( $commande = $commandes->fetch() ){
+                echo $commande['prix_total'].',';
+              }
+            ?>
           ],
           lineTension: 0,
           backgroundColor: 'transparent',

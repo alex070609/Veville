@@ -113,10 +113,10 @@
       </div>
       <div class="modal-body">
         <form action="connexion.php" method="POST">
-          <label for="pseudo">pseudo</label>
-          <input type="text" name="pseudo" id="pseudo" class="form-control" value="<?= (isset($_SESSION['post_compte'])) ? $_SESSION['post_compte']['pseudo'] : '' ?>">
-          <label for="mdp">Mot de passe</label>
-          <input type="password" name="mdp" id="mdp" class="form-control">
+          <label for="pseudo2">pseudo</label>
+          <input type="text" name="pseudo" id="pseudo2" class="form-control" value="<?= (isset($_SESSION['post_compte'])) ? $_SESSION['post_compte']['pseudo'] : '' ?>">
+          <label for="mdp2">Mot de passe</label>
+          <input type="password" name="mdp" id="mdp2" class="form-control">
           <button type="button" class="btn btn-secondary mt-4 form-control" data-dismiss="modal">Retour</button>
           <input type="submit" class="btn btn-primary mt-4 form-control" value="Se connecter">
         </form>
