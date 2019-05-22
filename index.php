@@ -7,11 +7,13 @@ if( !empty($_SESSION['message'])){
     echo $_SESSION['message'];
     unset($_SESSION['message']);
 }
-
 $content = '';
 $nb_champ_vide = 0;
 if( !empty($_POST) ){
-    foreach( $_POST as $value ){
+    foreach( $_POST as $key => $value ){
+        if( $key == 'idmembre' ){
+            continue;
+        }
         if( $value == '' ){
             $nb_champ_vide++;
         }
@@ -23,6 +25,7 @@ if( !empty($_POST) ){
     if( empty($content) ){
         extract($_POST);
         if( !empty($idmembre) ){
+            
             $vehicule = execReq( "SELECT * FROM vehicule WHERE idvehicule=:idvehicule", array(
                 'idvehicule' => $idvehicule
             ));
@@ -33,9 +36,10 @@ if( !empty($_POST) ){
             $date_deja_prise = execReq( "SELECT * FROM commande WHERE vehicule_idvehicule=:idvehicule", array(
                 'idvehicule' => $idvehicule
             ));
-            $date = $date_deja_prise->fetch();
-            if( !empty($date) ){
-                if( ($timestamp1 > strtotime($date['date_heure_depart'])) && (strtotime($date['date_heure_fin']) < $timestamp2) ){
+            while( $date = $date_deja_prise->fetch() ){
+                $date_debut = strtotime($date['date_heure_depart']);
+                $date_fin = strtotime($date['date_heure_fin']);
+                if( ($date_debut <= $timestamp2 && $timestamp1 <= $date_fin) ){
                     $content .= '<div class="alert alert-danger">Le véhicule '.$infoVehicule['titre'].' est déjà louer du '.$date['date_heure_depart'].' au '.$date['date_heure_fin'].' inclu</div>';
                 }
             }
@@ -54,7 +58,6 @@ if( !empty($_POST) ){
         }
     }
 }
-
 echo $content;
 ?>
 <div class="text-center">
@@ -82,12 +85,10 @@ echo $content;
 $(function() {
     $( "#date_heure_depart" ).datepicker({
         minDate: 0,
-        buttonImageOnly: true
+        onClose: function( selectedDate ) {$( "#date_heure_fin" ).datepicker( "option", "minDate", selectedDate );}
     });
     $( "#date_heure_fin" ).datepicker({
-        minDate: '+3D',
-        maxDate: '+2W',
-        buttonImageOnly: true
+        onClose: function( selectedDate ) {$( "#date_heure_debut" ).datepicker( "option", "maxDate", selectedDate );}
     });
 });
 </script>
