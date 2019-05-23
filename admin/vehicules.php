@@ -40,14 +40,15 @@ if( !empty($_POST) ){
     if( empty($content) ){
         extract($_POST);
         if( $idvehicule != 0 ){
-            execReq("UPDATE vehicule SET agences_idagence=:agences_idagence, titre=:titre, marque=:marque, modele=:modele, description=:description, photo=:photo, prix_journalier=:prix_journalier WHERE idproduit=:idproduit", array(
-                'agences_idagences' => $agences_idagences,
+            execReq("UPDATE vehicule SET agences_idagences=:id, titre=:titre, marque=:marque, modele=:modele, description=:description, photo=:photo, prix_journalier=:prix_journalier WHERE idvehicule=:idvehicule", array(
+                'id' => $agences_idagences,
                 'titre' => $titre,
                 'marque' => $marque,
                 'modele' => $modele,
                 'description' => $description,
                 'photo' => $photo_bdd,
-                'prix_journalier' => $prix_journalier
+                'prix_journalier' => $prix_journalier,
+                'idvehicule' => $idvehicule
             ));
         } else {
             execReq('INSERT INTO vehicule VALUES (NULL, :agences_idagences, :titre, :marque, :modele, :description, :photo, :prix_journalier)', array(
