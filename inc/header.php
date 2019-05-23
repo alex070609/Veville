@@ -153,6 +153,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="<?= URL. 'admin/agence.php' ?>">
+              <img src="../photo/company.svg" alt="company" class="pic">
+              Agences
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="<?= URL . 'admin/vehicules.php' ?>">
               <img src="../photo/car.svg" alt="voiture" class="pic">
               Véhicules
