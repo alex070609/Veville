@@ -32,7 +32,7 @@
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
-                        <a href="" class="nav-link">Mes réservations</a>
+                        <a href="<?= URL.'reservations.php' ?>" class="nav-link">Mes réservations</a>
                     </li>
                     <li class="nav-item">
                         <a href="<?= URL.'compte.php' ?>" class="nav-link">Mon compte</a>
