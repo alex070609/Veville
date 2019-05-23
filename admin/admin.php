@@ -75,7 +75,7 @@ require_once('../inc/header.php');
                         }?>
                         <td><?= $value ?></td><?php
                     }
-                    ?><td>Voir</td><?php
+                    ?><td><a href="commandes.php?where=<?= $ligne['idcommande'] ?>">Voir</a></td><?php
                     ?></tr><?php
                 } ?>
           </tbody>
