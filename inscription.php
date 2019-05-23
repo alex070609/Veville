@@ -37,16 +37,17 @@ if( !empty($_POST) ){
         } else {
             extract($_POST);
             // génère des variables avec le noms des index
-            execReq('INSERT INTO membre VALUES (NULL, :pseudo, :mdp, :nom, :prenom, :email, :civilite, 0 , now())', array(
+            execReq('INSERT INTO membre VALUES (NULL, :pseudo, :mdp, :nom, :prenom, :email, :civilite, 0 , now(), :photo)', array(
                 'pseudo'=> $pseudo,
                 'mdp' => md5($mdp . SALT),
                 'nom' => $nom,
                 'prenom' => $prenom,
                 'email' => $email,
-                'civilite' => $civilite
+                'civilite' => $civilite,
+                'photo' => 'generic.png'
             ));
             $inscription = true;
-            $_SESSION['message'] = '<div class="alert alert-success">Vous êtes inscrit ! <a href="' . URL . 'connexion.php">Cliquez ici pour vous connecter</a></div>';
+            $_SESSION['message'] = '<div class="alert alert-success">Vous êtes inscrit !</div>';
             header('location:'.URL);
             exit();
         }

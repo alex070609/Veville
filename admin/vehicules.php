@@ -33,8 +33,6 @@ if( !empty($_POST) ){
         } else {
             $content = '<div class="alert alert-danger">La photo n\'a pas été enregistrer, formats accepté : .jpeg, .jpg, .png, .gif</div>';
         }
-    } else {
-        echo 'non';
     }
 
     if( empty($content) ){

@@ -82,8 +82,8 @@ if( !empty($_POST) ):
                 <input type="hidden" name="action2" value="ok">
                 <input type="hidden" name="agence" value="<?= $_POST['agence'] ?>">
                 <input type="hidden" name="idmembre" value="<?= $_SESSION['membre']['idmembre'] ?>">
-                <input type="hidden" name="dated" value="<?= $_POST['dated'] ?>">
-                <input type="hidden" name="datef" value="<?= $_POST['datef'] ?>">
+                <input type="hidden" name="date_heure_debut" value="<?= $_POST['dated'] ?>">
+                <input type="hidden" name="date_heure_fin" value="<?= $_POST['datef'] ?>">
                 <input type="submit" class="btn btn-info" value="Retour">
             </form>
         </div>

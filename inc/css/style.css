@@ -8,3 +8,21 @@ main{
     width: auto;
     height: 30px;
 }
+.userpic{
+    height: 150px;
+    width: auto;
+}
+.av{
+    border: 1px solid #343A40;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #343A40;
+    padding: 6px;
+    color: white;
+}
+.ap{
+    border: 1px solid #343A40;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 6px;
+}

@@ -65,7 +65,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="inscription.php" method="POST">
+        <form action="inscription.php" method="POST" enctype="multipart/form-data">
           <?php  ?>
           <div class="form-row">
             <label for="pseudo">Pseudo</label>
@@ -91,6 +91,10 @@
               <option value="m">Homme</option>
               <option value="f">Femme</option>
             </select>
+          </div>
+          <div class="from-row">
+            <label for="photo">Photo</label>
+            <input type="file" name="photo" id="photo">
           </div>
           <button type="button" class="btn btn-secondary form-control mt-4" data-dismiss="modal">Retour</button>
           <input type="submit" value="S'inscrire" class="btn btn-primary form-control mt-4">
