@@ -8,9 +8,9 @@ session_start();
 
 // Connexion BDD
 $pdo = new PDO(
-    'mysql:host=localhost;dbname=veville',
-    'root',
-    '',
+    'mysql:host=ucg91744;dbname=sql24',
+    'ucg91744',
+    '23535496Ec',
     array(
         PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
