@@ -10,11 +10,14 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script src="<?= URL ?>inc/js/mb.YTPlayer.js"></script>
+    <script src="<?= URL ?>inc/js/main.js"></script>
+    <link href="<?= URL . 'inc/css/font-awesome.css' ?>" rel="stylesheet">
     <link rel="stylesheet" href="<?= URL . 'inc/css/style.css'?>">
 </head>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="<?= URL ?>"></a>
+        <a class="navbar-brand" href="<?= URL ?>">Veville</a>
         <button class="navbar-toggler" type="button" date-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -132,11 +135,15 @@
 </div>
 
 <?php unset($_SESSION['post_compte']); ?>
-<?php unset($_SESSION['post_inscrip']); ?>
-<main class="container" style="margin-top:60px;">
+<?php unset($_SESSION['post_inscrip']);
+if( isset($title) && $title == 'Accueil' ){
+  '';
+} else {
+  ?><main class="container" style="margin-top:60px;"><?php
+}
+  
 
 
-<?php
   if( $title == 'backoffice' ){
     if($acc == true){ ?>
     <div class="row">

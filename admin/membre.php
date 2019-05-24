@@ -30,6 +30,15 @@ if( isset($_GET['action']) && $_GET['action'] == 'downpriv' ){
     exit();
 }
 
+if( isset($_GET['action']) && $_GET['action'] == 'supp' ){
+    $membre = execReq( "DELETE FROM membre WHERE idmembre=:id", array(
+        'id' => $_GET['id']
+    ));
+    $_SESSION['message'] = '<div class="alert alert-info">Le membre a été supprimé</div>';
+    header('location:'.URL.'admin/membre.php');
+    exit();
+}
+
 
 require_once('../inc/header.php');
 ?>
@@ -48,6 +57,9 @@ require_once('../inc/header.php');
                 $colonne = $commande->getColumnMeta($i);
                     if( $colonne['name'] == 'mdp' ){
                         continue;
+                    }
+                    if( $colonne['name'] == 'idmembre' ){
+                        $colonne['name'] = 'ID';
                     }
                 ?>
                     <th><?= ucfirst($colonne['name']) ?></th>
@@ -85,7 +97,7 @@ require_once('../inc/header.php');
                     ?>
                     <td><?= $value ?></td><?php
                 }
-                ?><td><?= $modif ?></td><?php
+                ?><td><?= $modif ?>/<a href="?action=supp&id=<?= $ligne['idmembre'] ?>">Supp</a></td><?php
             } ?>
             </tr>
         </tbody>

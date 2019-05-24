@@ -26,3 +26,436 @@ main{
     border-bottom-right-radius: 5px;
     padding: 6px;
 }
+
+/*== Theme Defualt CSS ==*/
+
+.overlay {
+	position: relative;
+	z-index: 1;
+}
+
+.overlay:after {
+	background-color: rgba(0, 0, 0, 0.8);
+	content: "";
+	left: 0;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+}
+
+.section-padding {
+	padding: 100px 0;
+}
+
+.section-title {
+	font-size: 15px;
+	font-weight: 300;
+	margin-bottom: 80px;
+}
+
+.section-title h2 {
+	margin-bottom: 10px;
+	position: relative;
+	text-transform: uppercase;
+}
+
+.section-title p {
+	margin-top: 10px;
+}
+
+.section-title .title-line {
+	color: #ffd000;
+	position: relative;
+}
+
+.section-title .title-line::after {
+	background-color: #333;
+	content: "";
+	height: 2px;
+	left: -60px;
+	position: absolute;
+	top: 10px;
+	width: 50px;
+}
+
+.section-title .title-line::before {
+	background-color: #333;
+	content: "";
+	height: 2px;
+	position: absolute;
+	right: -60px;
+	top: 10px;
+	width: 50px;
+}
+
+.overlay .section-title h2,
+.overlay .section-title p {
+	color: #fff;
+}
+
+.overlay .section-title .title-line::after,
+.overlay .section-title .title-line::before {
+	background-color: #fff;
+}
+
+.scroll-top {
+    bottom: 50px;
+    cursor: pointer;
+    display: none;
+    position: fixed;
+    right: 30px;
+    width: 30px;
+    z-index: 9999;
+}
+
+/*== Theme Defualt CSS ==*/
+
+/*== Slider Area CSS Start ==*/
+
+.single-slide-item {
+	background-image: url(../../photo/index/banner.jpg);
+	background-position: center center;
+	background-size: cover;
+	padding: 80px 0;
+}
+
+.book-a-car {
+	background-color: rgba(255, 255, 255, 0.8);
+	margin-top: 118px;
+	padding: 30px 50px;
+}
+
+.book-a-car select.custom-select {
+	background-image: url("../../photo/index/caret-cion.png");
+	background-position: right 13px center;
+	background-size: 12px auto;
+}
+
+.book-item {
+	margin-bottom: 30px;
+}
+
+.return-car {
+	margin-top: 30px;
+}
+
+.book-a-car h4 {
+	font-size: 18px;
+	font-weight: 400;
+	margin-bottom: 15px;
+	text-transform: uppercase;
+}
+
+.book-a-car input,
+.book-a-car select {
+	border-color: #ffd000;
+	border-radius: 0;
+	font-size: 14px;
+	height: 45px;
+	width: 100%;
+}
+
+.book-a-car input:focus,
+.book-a-car select:focus {
+	border-color: #ffd000;
+}
+
+.book-a-car input {
+	border-right: 0 none;
+}
+
+.book-a-car .pick-up-date span.input-group-append {
+	background-color: #fff;
+	border: 1px solid #ffd000;
+}
+
+.book-a-car .pick-up-date span.input-group-append {
+	border-left: 0 none;
+}
+
+.book-a-car .pick-up-date span.input-group-append i.fa {
+	color: #ffd000;
+	font-size: 18px;
+	line-height: 33px;
+}
+
+.book-now-btn {
+	background-color: #ffd000;
+	color: #222;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 600;
+	padding: 12px 30px;
+	border: none;
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+.book-now-btn:focus {
+	color: #222;
+}
+
+.gj-calendar-bootstrap table tr td.today div {
+	color: #ffd000
+}
+
+.gj-calendar-bootstrap table tr td.selected div {
+	background-color: #ffd000;
+	border-color: #ffd000;
+}
+
+.slider-right-text {
+	color: #fff;
+	font-size: 16px;
+}
+
+.slider-right-text h1 {
+	color: #ffd000;
+	font-size: 45px;
+	margin-bottom: 10px;
+}
+
+/*== Slider Area CSS End ==*/
+/*== About Area CSS Start ==*/
+
+.about-content {
+	line-height: 2.3em;
+}
+
+.about-content p {
+	margin-bottom: 25px;
+}
+
+.about-content p:last-child {
+	margin-bottom: 0;
+}
+
+.about-btn a {
+	background-color: #ffd000;
+	border-radius: 50px;
+	color: #fff;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 600;
+	margin-right: 20px;
+	padding: 6px 30px;
+	text-transform: uppercase;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+}
+
+.about-btn a:hover {
+	background-color: #222;
+}
+
+
+.about-video {
+	position: relative;
+	padding-bottom: 56.25%;
+}
+
+.about-video iframe {
+	border: medium none;
+	border-radius: 3px;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+/*== About Area CSS End ==*/
+
+/*== Service Area CSS Start ==*/
+
+.service-item {
+	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+	color: #222;
+	margin-bottom: 30px;
+	padding: 65px 25px;
+}
+
+.service-item h3 {
+	color: #000;
+	font-size: 25px;
+	font-weight: 600;
+	text-transform: uppercase;
+	margin: 20px 0 15px;
+}
+
+.service-item i.fa {
+	font-size: 55px;
+	color: #ffd000;
+}
+
+.service-container-wrap .service-item {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border: 1px solid #ffd000;
+	padding: 50px 20px;
+}
+
+/*== Service Area CSS End ==*/
+
+/*== Fun Fact Area CSS Start ==*/
+
+#funfact-area {
+	background-image: url(../../photo/index/funfact-bg.jpg);
+	background-size: cover;
+	background-position: center center;
+	color: #fff;
+}
+
+.single-funfact {
+	background-color: rgba(0, 0, 0, 0.6);
+	padding: 25px 40px;
+	text-align: center;
+}
+
+.funfact-icon {
+	color: #ffd000;
+	font-size: 50px;
+}
+
+.funfact-icon,
+.funfact-content {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.funfact-content {
+	font-size: 40px;
+	font-weight: 700;
+	padding-left: 25px;
+}
+
+.funfact-content h4 {
+	color: #eaeaea;
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+/*== Fun Fact Area CSS End ==*/
+
+/*== Pricing Area CSS Start ==*/
+
+#pricing-area {
+	background-image: url(../../photo/index/pricing-bg.jpg);
+	background-size: cover;
+	background-position: center center;
+}
+
+.single-pricing-table {
+	background-color: rgba(255, 255, 255, 0.15);
+	color: #fff;
+	padding: 50px 0 0;
+}
+
+.single-pricing-table h3 {
+	color: #fff;
+	font-size: 23px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.single-pricing-table h2 {
+	color: #ffc714;
+	font-size: 40px;
+	margin: 10px 0;
+	text-transform: uppercase;
+}
+
+.single-pricing-table h5 {
+	color: #ccc;
+	font-size: 14px;
+}
+
+.package-list {
+	font-weight: 600;
+	line-height: 3em;
+	margin-top: 20px;
+    padding: 0;
+}
+
+.package-list li {
+	border-bottom: 1px solid #999;
+    padding: 5px 20px;
+    list-style: none;
+}
+
+.package-list li:first-child {
+	border-top: 1px solid #999;
+}
+
+/*== Pricing Area CSS End ==*/
+
+/*== Mobile Apps CSS Start ==*/
+
+#mobile-app-area {
+	padding: 120px 0;
+	position: relative;
+}
+
+#mobile-app-area #wrapper_mobileapp-video-bg .YTPOverlay {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+#mobile-app-area::after {
+	background-image: url("../../photo/index/mobile-app.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	content: "";
+	height: 90%;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	width: 50%;
+}
+
+.mobile-app-content h2 {
+	color: #ffd000;
+	font-size: 70px;
+}
+
+.mobile-app-content {
+	color: #fff;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.mobile-app-content p {
+	margin: 5px 0 20px
+}
+
+.app-btns a {
+	border: 2px solid #ffd000;
+	border-radius: 50px;
+	color: #fff;
+	display: inline-block;
+	margin-right: 40px;
+	padding: 10px 20px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+}
+
+.app-btns a i {
+	font-size: 20px;
+	margin-right: 5px;
+}
+
+.app-btns a:hover {
+	background-color: #ffd000;
+}
+
+#mobileapp-video-bg {
+	position: relative;
+}
+
+/*== Mobile Apps CSS End ==*/

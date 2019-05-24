@@ -73,6 +73,23 @@ require_once('../inc/header.php');
 <div role="main">
     <h2>Vehicules</h2>
     <a href="?action=ajout" class="btn btn-primary mb-4">Ajouter un nouveau véhicule</a>
+    <form action="" method="get">
+        <input type="hidden" name="tri">
+        <div class="form-row mb-4">
+            <select style="width:auto;" class="form-control mr-4" name="idagences" id="idagences">
+                <?php
+                $req = execReq( "SELECT * FROM agences");
+                while($res = $req->fetch()){
+                    ?>
+                    <option value="<?= $res['idagences'] ?>"><?= $res['titre'] ?></option>
+                    <?php
+                }
+                ?>
+            </select>
+            <input type="submit" value="Selectionner" class="btn btn-primary mr-4">
+            <a href="<?= URL . 'admin/vehicules.php' ?>" class="btn btn-info">Tout afficher</a>
+        </div>
+    </form>
     <?php
     if( (isset($_GET['action']) && $_GET['action'] == 'edit') || (isset($_GET['action']) && $_GET['action'] == 'ajout') ){
         // Ajout d'un véhicule
@@ -161,8 +178,15 @@ require_once('../inc/header.php');
     echo $content;
     ?>
     <div class="table-responsive overflow-auto">
+    <?php 
+    $whereclause = '';
+    if( isset($_GET['tri']) ){
+        $whereclause = 'WHERE agences_idagences=' . $_GET['idagences'];
+    }
+    $commande = execReq( "SELECT * FROM vehicule $whereclause"); 
+    if( $commande->rowCount() != 0 ){
+    ?>
     <table class="table table-striped table-bordered table-sm">
-        <?php $commande = execReq( "SELECT * FROM vehicule"); ?>
         <thead>
             <tr>
             <?php
@@ -202,7 +226,10 @@ require_once('../inc/header.php');
             } ?>
             </tr>
         </tbody>
-    </table>
+    </table><?php
+    } else {
+        ?><div class="alert alert-warning">Il n'y a aucun véhicules à afficher</div><?php
+    } ?>
 </div>
 
 

@@ -4,6 +4,7 @@ $title = 'Accueil';
 $agence = '';
 require_once('inc/header.php');
 
+?></main><?php
 
 
 
@@ -11,21 +12,75 @@ if( !empty($_SESSION['message'])){
     echo $_SESSION['message'];
     unset($_SESSION['message']);
 }
+// echo $content;
 
-echo $content;
+// $content = '';
+// $nb_champ_vide = 0;
+// if( !empty($_GET) ){
+//     if( !empty($_get['membre']) ){
+//         $vehicule = execReq( "SELECT * FROM vehicule WHERE idvehicule=:idvehicule", array(
+//             'idvehicule' => $_GET['vehicule']
+//         ));
+//         $infoVehicule = $vehicule->fetch();
+//         $agence = $infoVehicule['agences_idagences'];
+//         $timestamp1 = strtotime($_GET['dated']);
+//         $timestamp2 = strtotime($_GET['datef']);
+//         $date_deja_prise = execReq( "SELECT * FROM commande WHERE vehicule_idvehicule=:idvehicule", array(
+//             'idvehicule' => $_GET['vehicule']
+//         ));
+//         while( $date = $date_deja_prise->fetch() ){
+//             $date_debut = strtotime($date['date_heure_depart']);
+//             $date_fin = strtotime($date['date_heure_fin']);
+//             if( ($date_debut <= $timestamp2 && $timestamp1 <= $date_fin) ){
+//                 $content .= '<div class="alert alert-danger">Le véhicule '.$infoVehicule['titre'].' est déjà louer du '.$date['date_heure_depart'].' au '.$date['date_heure_fin'].' inclu</div>';
+//             }
+//         }
+//         if( empty($content) ){
+//             $nb_de_jour_timestamp = $timestamp2 - $timestamp1;
+//             $nb_de_jour = $nb_de_jour_timestamp/86400;
+//             $prix_journalier = $nb_de_jour * $infoVehicule['prix_journalier'];
+//             execReq( "INSERT INTO commande VALUES(NULL, :membre, :vehicule, :agence, :date_heure_depart, :date_heure_fin, $prix_journalier, now())", array(
+//                 'membre' => $_GET['membre'],
+//                 'vehicule' => $_GET['vehicule'],
+//                 'agence' => $_GET['agence'],
+//                 'date_heure_depart' => date("Y-m-d", $timestamp1),
+//                 'date_heure_fin' => date("Y-m-d", $timestamp2)
+//             ));
+//             $content = '<div class="alert alert-success">Votre reservation a été effectué !</div>';
+//         }
+//     } else {
+//         $content .= '<div class="alert alert-danger">Pour passer une commande vous devez créer un compte <a href="" data-toggle="modal" data-target="#inscription">cliquez ici</a> pour vous en créer un</div>';
+//     }
+// }  ?>
 
 
+<!--== Slider Area Start ==-->
+<section id="slider-area">
+    <!--== slide Item One ==-->
+    <div class="single-slide-item overlay">
+        <div class="container" style="min-height:500px;">
+            <div class="slider-right-text">
+                <h1>VEVILLE</h1>
+                <p>LA LOCATION A PETIT PRIX !</p>
+                <div class="about-btn">
+                    <a href="<?= URL ?>#louez">Louer un véhicule dès maintenant !</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--== slide Item One ==-->
+</section>
+<!--== Slider Area End ==-->
 
-
-
-?>
-<div class="text-center">
-    <h1>VEVILLE</h1>
-    <h2>Location de véhicules à petit prix !</h2>
+<section class="section-padding">
+<div class="col-lg-12">
+    <div class="section-title  text-center">
+        <h2>LOUER UN VEHICULE</h2>
+        <span class="title-line"><i class="fa fa-car"></i></span>
+    </div>
 </div>
-<img src="photo/voitures.png" alt="Voitures" style="width:100%;height:auto">
-<hr>
 
+<div class="container">
 <form method="get">
 <label for="agence">Sélectionner votre agence</label>
 <input type="hidden" name="action" value="ok">
@@ -41,12 +96,10 @@ echo $content;
     <input type="submit" value="Choisir" class="btn btn-primary ml-2">
 </div>
 </form>
-<hr>
 <?php
 if( isset($_GET['action']) && $_GET['action'] == 'ok' ){
     $agenceFinale = $_GET['agence'];
     $agence = '';
-    var_dump($_GET);
     if( empty($agence) ){
         $agencereq = execReq( "SELECT * FROM agences WHERE idagences=:id", array(
             'id' => $agenceFinale
@@ -134,60 +187,291 @@ if( isset($_GET['action']) && $_GET['action'] == 'ok' ){
         }
         ?></div></div><?php
     }
-}
+} ?>
+</div>
+</section>
+
+<!--== About Us Area Start ==-->
+<section id="about-area" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <!-- Section Title Start -->
+                <div class="col-lg-12">
+                    <div class="section-title  text-center">
+                        <h2>A PROPOS</h2>
+                        <span class="title-line"><i class="fa fa-car"></i></span>
+                        <p>Veville la location de véhicules à petit prix</p>
+                    </div>
+                </div>
+                <!-- Section Title End -->
+            </div>
+
+            <div class="row">
+                <!-- About Content Start -->
+                <div class="col-lg-6">
+                    <div class="display-table">
+                        <div class="display-table-cell">
+                            <div class="about-content">
+                                <p>Veville est une entreprise de location de véhicules implanté depuis plusieurs années au centre de paris, notre entreprise vous propose des prix intéréssant pour la location de véhicules d'exeption ou non, avec un service irréprochable et des avantages pour les clietns fidèles</p>
+                                <div class="about-btn">
+                                    <a href="#">Nous contacter</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- About Content End -->
+
+                <!-- About Video Start -->
+                <div class="col-lg-6">
+                    <div class="about-video">
+                        <iframe src="https://player.vimeo.com/video/121982328?title=0&byline=0&portrait=0"></iframe>
+                    </div>
+                </div>
+                <!-- About Video End -->
+            </div>
+        </div>
+    </section>
+    <!--== About Us Area End ==-->
+
+    <!--== Services Area Start ==-->
+    <section id="service-area" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <!-- Section Title Start -->
+                <div class="col-lg-12">
+                    <div class="section-title  text-center">
+                        <h2>Nos services :</h2>
+                        <span class="title-line"><i class="fa fa-car"></i></span>
+                        <p>Vous trouverez ci-dessous tout les services que nous proposons</p>
+                    </div>
+                </div>
+                <!-- Section Title End -->
+            </div>
+
+           
+			<!-- Service Content Start -->
+			<div class="row">
+				<!-- Single Service Start -->
+				<div class="col-lg-4 text-center">
+					<div class="service-item">
+						<i class="fa fa-taxi"></i>
+						<h3>Livraison</h3>
+						<p>Livraison du véhicule à domicile (dans la ville de Paris et Lyon) ou à l'aéroport</p>
+					</div>
+				</div>
+				<!-- Single Service End -->
+				
+				<!-- Single Service Start -->
+				<div class="col-lg-4 text-center">
+					<div class="service-item">
+						<i class="fa fa-cog"></i>
+						<h3>Dépannage</h3>
+						<p>Si vous tomber en panne avec l'un de nos véhicules un de nos employés ce déplacera sur place avec un nouveau véhicule</p>
+					</div>
+				</div>
+				<!-- Single Service End -->
+				
+				<!-- Single Service Start -->
+				<div class="col-lg-4 text-center">
+					<div class="service-item">
+						<i class="fa fa-map-marker"></i>
+						<h3>Application</h3>
+						<p>Avec notre application mobile reperez les agences à proximitée de vous et faites voius livré !</p>
+					</div>
+				</div>
+				<!-- Single Service End -->
+				
+				<!-- Single Service Start -->
+				<div class="col-lg-4 text-center">
+					<div class="service-item">
+						<i class="fa fa-life-ring"></i>
+						<h3>Assurance</h3>
+						<p>Une assurance est disponible pour rouler en toute sérénitée</p>
+					</div>
+				</div>
+				<!-- Single Service End -->
+				
+				<!-- Single Service Start -->
+				<div class="col-lg-4 text-center">
+					<div class="service-item">
+						<i class="fa fa-bath"></i>
+						<h3>Nettoyage des véhicules</h3>
+						<p>Tout nos véhicules son nétoyer et astiqué pour votre confort et pour une propreté digne d'un véhicule neuf</p>
+					</div>
+				</div>
+				<!-- Single Service End -->
+				
+				<!-- Single Service Start -->
+				<div class="col-lg-4 text-center">
+					<div class="service-item">
+						<i class="fa fa-phone"></i>
+						<h3>Service d'appels</h3>
+						<p>Si vous n'avez plus besoin de votre véhicule mais qu'aucune agence n'est près de vous vous pouvez contact un de nos employés qui viendra sur place récupérer le véhicule</p>
+					</div>
+				</div>
+				<!-- Single Service End -->
+			</div>
+			<!-- Service Content End -->
+        </div>
+    </section>
+    <!--== Services Area End ==-->
+
+    <!--== Fun Fact Area Start ==-->
+    <section id="funfact-area" class="overlay section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-11 col-md-12 m-auto">
+                    <div class="funfact-content-wrap">
+                        <div class="row">
+                            <!-- Single FunFact Start -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single-funfact">
+                                    <div class="funfact-icon">
+                                        <i class="fa fa-smile-o"></i>
+                                    </div>
+                                    <div class="funfact-content">
+                                        <p><span class="counter">550</span>+</p>
+                                        <h4>Clients satisfaits</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Single FunFact End -->
+
+                            <!-- Single FunFact Start -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single-funfact">
+                                    <div class="funfact-icon">
+                                        <i class="fa fa-car"></i>
+                                    </div>
+                                    <div class="funfact-content">
+                                        <p><span class="counter">250</span>+</p>
+                                        <h4>Véhicules en stock</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Single FunFact End -->
+
+                            <!-- Single FunFact Start -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single-funfact">
+                                    <div class="funfact-icon">
+                                        <i class="fa fa-bank"></i>
+                                    </div>
+                                    <div class="funfact-content">
+                                        <p><span class="counter">50</span>+</p>
+                                        <h4>Agences</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Single FunFact End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--== Fun Fact Area End ==-->
+
+    <!--== Pricing Area Start ==-->
+    <section id="pricing-area" class="section-padding overlay">
+        <div class="container">
+            <div class="row">
+                <!-- Section Title Start -->
+                <div class="col-lg-12">
+                    <div class="section-title  text-center">
+                        <h2>La qualité à petits prix</h2>
+                        <span class="title-line"><i class="fa fa-car"></i></span>
+                        <p>Voici nos tarifs pour nos services</p>
+                    </div>
+                </div>
+                <!-- Section Title End -->
+            </div>
+
+            <!-- Pricing Table Conatent Start -->
+            <div class="row">
+                <!-- Single Pricing Table -->
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="single-pricing-table">
+                        <h3>GOLD</h3>
+                        <h2>49.99 €</h2>
+                        <h5>PAR MOIS</h5>
+
+                        <ul class="package-list">
+                            <li>LIVRAISON GRATUITE DU VEHICULE</li>
+                            <li>LOCATIONS POUR MARIAGES ET AUTRE</li>
+                            <li>ASSURANCE INCLUSE</li>
+                            <li>DEPANNAGE INCLUS</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Single Pricing Table -->
+
+                <!-- Single Pricing Table -->
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="single-pricing-table">
+                        <h3>BRONZE</h3>
+                        <h2>Gratuit</h2>
+                        <h5>A L'INCRIPTION AU SERVICE</h5>
+
+                        <ul class="package-list">
+                            <li>LIVRAISON PAYANTE</li>
+                            <li>LOCATION POUR DIVERS EVENEMENT</li>
+                            <li>ASSURANCE EN SUPPLEMENT</li>
+                            <li>DEPANAGE EN SUPPLEMENT</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Single Pricing Table -->
+
+                <!-- Single Pricing Table -->
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="single-pricing-table">
+                        <h3>SILVER</h3>
+                        <h2>24.99 €</h2>
+                        <h5>PAR MOIS</h5>
+
+                        <ul class="package-list">
+                            <li>LIVRAISON GRATUITE A L'AEROPORT</li>
+                            <li>LOCATION POUR MARIAGES ET AUTRE</li>
+                            <li>ASSURANCE EN SUPPLEMENT</li>
+                            <li>DEPANNAGE INCLUS</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Single Pricing Table -->
+            </div>
+            <!-- Pricing Table Conatent End -->
+        </div>
+    </section>
+    <!--== Pricing Area End ==-->
+
+    <!--== Mobile App Area Start ==-->
+    <div id="mobileapp-video-bg"></div>
+    <section id="mobile-app-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="mobile-app-content">
+                        <h2>REDUCTION DE 20% AVEC L'APP VEVILLE</h2>
+                        <p>Facile &amp; Rapide - Réserver votre véhicule en 60 secondes !</p>
+                        <p>télécharger sur :</p>
+                        <div class="app-btns">
+                            <a href="#"><i class="fa fa-android"></i> Android Store</a>
+                            <a href="#"><i class="fa fa-apple"></i> Apple Store</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--== Mobile App Area End ==-->
 
 
 
 
 
 
-$content = '';
-$nb_champ_vide = 0;
-if( !empty($_GET) ){
-    if( !empty($_get['membre']) ){
-        $vehicule = execReq( "SELECT * FROM vehicule WHERE idvehicule=:idvehicule", array(
-            'idvehicule' => $_GET['vehicule']
-        ));
-        $infoVehicule = $vehicule->fetch();
-        $agence = $infoVehicule['agences_idagences'];
-        $timestamp1 = strtotime($_GET['dated']);
-        $timestamp2 = strtotime($_GET['datef']);
-        $date_deja_prise = execReq( "SELECT * FROM commande WHERE vehicule_idvehicule=:idvehicule", array(
-            'idvehicule' => $_GET['vehicule']
-        ));
-        while( $date = $date_deja_prise->fetch() ){
-            $date_debut = strtotime($date['date_heure_depart']);
-            $date_fin = strtotime($date['date_heure_fin']);
-            if( ($date_debut <= $timestamp2 && $timestamp1 <= $date_fin) ){
-                $content .= '<div class="alert alert-danger">Le véhicule '.$infoVehicule['titre'].' est déjà louer du '.$date['date_heure_depart'].' au '.$date['date_heure_fin'].' inclu</div>';
-            }
-        }
-        if( empty($content) ){
-            $nb_de_jour_timestamp = $timestamp2 - $timestamp1;
-            $nb_de_jour = $nb_de_jour_timestamp/86400;
-            $prix_journalier = $nb_de_jour * $infoVehicule['prix_journalier'];
-            execReq( "INSERT INTO commande VALUES(NULL, :membre, :vehicule, :agence, :date_heure_depart, :date_heure_fin, $prix_journalier, now())", array(
-                'membre' => $_GET['membre'],
-                'vehicule' => $_GET['vehicule'],
-                'agence' => $_GET['agence'],
-                'date_heure_depart' => date("Y-m-d", $timestamp1),
-                'date_heure_fin' => date("Y-m-d", $timestamp2)
-            ));
-            $content = '<div class="alert alert-success">Votre reservation a été effectué !</div>';
-        }
-    } else {
-        $content .= '<div class="alert alert-danger">Pour passer une commande vous devez créer un compte <a href="" data-toggle="modal" data-target="#inscription">cliquez ici</a> pour vous en créer un</div>';
-    }
-}
-
-
-
-
-
-
-
-
-
-
+<?php
 require_once('inc/footer.php');
 ?>
