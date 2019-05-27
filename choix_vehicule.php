@@ -11,25 +11,22 @@ if( isset($_POST['titre']) ){
     $title = $_GET['titre'];
 }
 
-
 if( !empty($_GET['action']) && $_GET['action'] == "reserver" ){
     $nb_de_jour_timestamp = $_GET['datef'] - $_GET['dated'];
     $nb_de_jour = $nb_de_jour_timestamp/86400;
     $prix_journalier = $nb_de_jour * $_GET['prix_journalier'];
-    execReq( "INSERT INTO commande VALUES(NULL, :membre, :vehicule, :agence, :date_heure_depart, :date_heure_fin, :prix_journalier, now())", array(
-        'membre' => $_SESSION['membre']['idmembre'],
-        'vehicule' => $_GET['vehicule'],
-        'agence' => $_GET['agence'],
-        'date_heure_depart' => date("Y-m-d", $_GET['dated']),
-        'date_heure_fin' => date("Y-m-d", $_GET['datef']),
-        'prix_journalier' => $prix_journalier
-    ));
-    $content = '<div class="alert alert-success">Votre reservation a été effectué !</div>';
+    $_SESSION['panier'] = $_GET;
+    $_SESSION['prix_journalier'] = $prix_journalier;
+    header('location:'.URL.'panier.php');
+    exit();
 }
 
 
 require_once('inc/header.php');
-var_dump($_POST);
+
+if( isset($_SESSION['panier']) ){
+    var_dump($_SESSION['panier']);
+}
 if( !empty($_POST) ):
 ?>
 <div class="row">

@@ -50,7 +50,7 @@
                     </li>
                 <?php endif; ?>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Panier</a>
+                    <a href="<?= URL ?>panier.php" class="nav-link">Panier</a>
                 </li>
             </ul>
         </div>
