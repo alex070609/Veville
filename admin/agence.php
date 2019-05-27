@@ -143,7 +143,7 @@ echo $content;
             }
         }
         // supréssion en BDD
-        execReq("DELETE FROM agences WHERE idagence=:id", array('id'=>$_GET['id']));
+        execReq("DELETE FROM agences WHERE idagences=:id", array('id'=>$_GET['id']));
         $content .= '<div class="alert alert-success">Le produit à été supprimé</div>';
     }?>
 
@@ -179,3 +179,9 @@ echo $content;
 
 <?php
 require_once('../inc/footer.php');
+
+
+
+
+// header('location:'.URL.'gestion produit.php?action=edit');
+// exit();
