@@ -12,48 +12,18 @@ if( !empty($_SESSION['message'])){
     echo $_SESSION['message'];
     unset($_SESSION['message']);
 }
-// echo $content;
-
-// $content = '';
-// $nb_champ_vide = 0;
-// if( !empty($_GET) ){
-//     if( !empty($_get['membre']) ){
-//         $vehicule = execReq( "SELECT * FROM vehicule WHERE idvehicule=:idvehicule", array(
-//             'idvehicule' => $_GET['vehicule']
-//         ));
-//         $infoVehicule = $vehicule->fetch();
-//         $agence = $infoVehicule['agences_idagences'];
-//         $timestamp1 = strtotime($_GET['dated']);
-//         $timestamp2 = strtotime($_GET['datef']);
-//         $date_deja_prise = execReq( "SELECT * FROM commande WHERE vehicule_idvehicule=:idvehicule", array(
-//             'idvehicule' => $_GET['vehicule']
-//         ));
-//         while( $date = $date_deja_prise->fetch() ){
-//             $date_debut = strtotime($date['date_heure_depart']);
-//             $date_fin = strtotime($date['date_heure_fin']);
-//             if( ($date_debut <= $timestamp2 && $timestamp1 <= $date_fin) ){
-//                 $content .= '<div class="alert alert-danger">Le véhicule '.$infoVehicule['titre'].' est déjà louer du '.$date['date_heure_depart'].' au '.$date['date_heure_fin'].' inclu</div>';
-//             }
-//         }
-//         if( empty($content) ){
-//             $nb_de_jour_timestamp = $timestamp2 - $timestamp1;
-//             $nb_de_jour = $nb_de_jour_timestamp/86400;
-//             $prix_journalier = $nb_de_jour * $infoVehicule['prix_journalier'];
-//             execReq( "INSERT INTO commande VALUES(NULL, :membre, :vehicule, :agence, :date_heure_depart, :date_heure_fin, $prix_journalier, now())", array(
-//                 'membre' => $_GET['membre'],
-//                 'vehicule' => $_GET['vehicule'],
-//                 'agence' => $_GET['agence'],
-//                 'date_heure_depart' => date("Y-m-d", $timestamp1),
-//                 'date_heure_fin' => date("Y-m-d", $timestamp2)
-//             ));
-//             $content = '<div class="alert alert-success">Votre reservation a été effectué !</div>';
-//         }
-//     } else {
-//         $content .= '<div class="alert alert-danger">Pour passer une commande vous devez créer un compte <a href="" data-toggle="modal" data-target="#inscription">cliquez ici</a> pour vous en créer un</div>';
-//     }
-// }  ?>
 
 
+if( !empty($_POST) ){
+    $nb_de_jour_timestamp = $_POST['datef'] - $_POST['dated'];
+    $nb_de_jour = $nb_de_jour_timestamp/86400;
+    $prix_journalier = $nb_de_jour * $POST['prix_journalier'];
+    $_SESSION['panier'] = $_POST;
+    header('location:'.URL.'panier.php');
+    exit();
+}
+
+?>
 <!--== Slider Area Start ==-->
 <section id="slider-area">
     <!--== slide Item One ==-->
@@ -140,7 +110,7 @@ if( isset($_GET['action']) && $_GET['action'] == 'ok' ){
     <hr>
     <script>
     $(function() {
-        $( "#date_heure_debut" ).datepicker({
+        $( "#date_heure_debut" ).datepicker({ 
             minDate: 0,
             onClose: function( selectedDate ) {$( "#date_heure_fin" ).datepicker( "option", "minDate", selectedDate );}
         });
@@ -152,37 +122,47 @@ if( isset($_GET['action']) && $_GET['action'] == 'ok' ){
 <?php
     if( isset($_GET['action2']) && $_GET['action2'] == 'ok' ){
         $idmembre = $_GET['idmembre'];
-        $date_debut = $_GET['date_heure_debut'];
-        $date_fin = $_GET['date_heure_fin'];
+
+        $exp_debut = explode('/', $_GET['date_heure_debut']);
+        $date_debut = $exp_debut[2] . '-' . $exp_debut[0] . '-' . $exp_debut[1];
+
+        $exp_fin = explode('/', $_GET['date_heure_fin']);
+        $date_fin = $exp_fin[2] . '-' . $exp_fin[0] . '-' . $exp_fin[1];;
         ?>
         <div class="container mt-5 mb-5">
         <div class="row">
         <?php
         $mot = '';
-        $vehicule = execReq( "SELECT * FROM vehicule WHERE agences_idagences=:id", array(
+        $vehicule = execReq( "SELECT * FROM vehicule WHERE agences_idagences=:id AND NOT EXISTS (SELECT * FROM commande WHERE vehicule.idvehicule=commande.vehicule_idvehicule AND date_heure_depart < '$date_fin' AND date_heure_fin > '$date_debut' )", array(
             'id' => $_GET['agence']
         ));
-        while( $infoVehicule = $vehicule->fetch() ){
-            ?>
-            <div class="card col-4" style="width: 18rem;">
-                <img src="<?= URL . 'photo/vehicule/' . $infoVehicule['photo'] ?>" class="card-img-top" alt="voiture">
-                <div class="card-body">
-                    <h5 class="card-title"><?= $infoVehicule['titre'] ?></h5>
-                    <p class="card-text">description : <?= $infoVehicule['description'] ?><br>prix journalier : <?= $infoVehicule['prix_journalier'] ?> €<br> </p>
-                    <form action="choix_vehicule.php" method="post">
-                        <input type="hidden" name="vehicule" value="<?= $infoVehicule['idvehicule'] ?>">
-                        <input type="hidden" name="agence" value="<?= $agenceFinale ?>">
-                        <input type="hidden" name="dated" value="<?= $date_debut ?>">
-                        <input type="hidden" name="datef" value="<?= $date_fin ?>">
-                        <input type="hidden" name="titre" value="<?= $infoVehicule['titre'] ?>">
-                        <input type="hidden" name="prix_journalier" value="<?= $infoVehicule['prix_journalier'] ?>">
-                        <input type="hidden" name="photo" value="<?= $infoVehicule['photo'] ?>">
-                        <input type="hidden" name="desc" value="<?= $infoVehicule['description'] ?>">
-                        
-                        <input type="submit" class="btn btn-info" value="Sélectionner ce véhiucle">
-                    </form>
+        if( $vehicule->rowCount() != 0 ){
+            while( $infoVehicule = $vehicule->fetch() ){
+                ?>
+                <div class="card col-4" style="width: 18rem;">
+                    <img src="<?= URL . 'photo/vehicule/' . $infoVehicule['photo'] ?>" class="card-img-top" alt="voiture">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $infoVehicule['titre'] ?></h5>
+                        <p class="card-text">description : <?= $infoVehicule['description'] ?><br>prix journalier : <?= $infoVehicule['prix_journalier'] ?> €<br> </p>
+                        <form action="" method="post">
+                            <input type="hidden" name="vehicule" value="<?= $infoVehicule['idvehicule'] ?>">
+                            <input type="hidden" name="agence" value="<?= $agenceFinale ?>">
+                            <input type="hidden" name="dated" value="<?= $date_debut ?>">
+                            <input type="hidden" name="datef" value="<?= $date_fin ?>">
+                            <input type="hidden" name="titre" value="<?= $infoVehicule['titre'] ?>">
+                            <input type="hidden" name="prix_journalier" value="<?= $infoVehicule['prix_journalier'] ?>">
+                            <input type="hidden" name="photo" value="<?= $infoVehicule['photo'] ?>">
+                            <input type="hidden" name="desc" value="<?= $infoVehicule['description'] ?>">
+
+                            <input type="submit" class="btn btn-success" value="Réserver et payer">
+                        </form>
+                    </div>
                 </div>
-            </div>
+                <?php
+            }
+        } else {
+            ?>
+            <div class="alert alert-danger">il n'y a aucun véhicules disponibles</div>
             <?php
         }
         ?></div></div><?php
