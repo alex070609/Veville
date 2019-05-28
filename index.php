@@ -5,10 +5,6 @@ $agence = '';
 
 ?></main><?php
 
-if (!empty($_SESSION['message'])) {
-    echo $_SESSION['message'];
-    unset($_SESSION['message']);
-}
 
 if (!empty($_POST) && isset($_POST['action']) && $_POST['action'] == 'reserver' ) {
     $nb_de_jour_timestamp = strtotime($_POST['datef']) - strtotime($_POST['dated']);
@@ -20,8 +16,8 @@ if (!empty($_POST) && isset($_POST['action']) && $_POST['action'] == 'reserver' 
     exit();
 }
 
-
 require_once 'inc/header.php';
+
 
 ?>
 <!--== Slider Area Start ==-->
@@ -30,6 +26,10 @@ require_once 'inc/header.php';
     <div class="single-slide-item overlay">
         <div class="container" style="min-height:1000px;">
             <div class="slider-right-text">
+                <?php if (!empty($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                } ?>
                 <h1>VEVILLE</h1>
                 <p>LA LOCATION A PETIT PRIX !</p>
                 <div class="about-btn">
