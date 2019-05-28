@@ -8,12 +8,11 @@ if( isset($_GET['action']) && $_GET['action'] == 'valider' && isConnected() ){
         'membre' => $_SESSION['membre']['idmembre'],
         'vehicule' => $_SESSION['panier']['vehicule'],
         'agence' => $_SESSION['panier']['agence'],
-        'date_heure_depart' => date("Y-m-d", $_SESSION['panier']['dated']),
-        'date_heure_fin' => date("Y-m-d", $_SESSION['panier']['datef']),
-        'prix_journalier' => $_SESSION['prix_journalier']
+        'date_heure_depart' => $_SESSION['panier']['dated'],
+        'date_heure_fin' => $_SESSION['panier']['datef'],
+        'prix_journalier' => $_SESSION['panier']['prix_total']
     ));
     unset($_SESSION['panier']);
-    unset($_SESSION['prix_journalier']);
     header('location:'.URL.'reservations.php');
     exit();
 
@@ -21,14 +20,7 @@ if( isset($_GET['action']) && $_GET['action'] == 'valider' && isConnected() ){
 
 if( isset($_GET['action']) && $_GET['action'] == 'vider' ){
     unset($_SESSION['panier']);
-    unset($_SESSION['prix_journalier']);
 }
-
-
-
-
-
-
 
 
 require_once('inc/header.php');
@@ -37,7 +29,7 @@ require_once('inc/header.php');
 <h2>Voici votre réservation</h2>
 <?php
 if( empty($_SESSION['panier']) ){
-    echo '<div class="alert alert-info">Votre panier est vide :(</div>';
+    echo '<div class="alert alert-info mb-0">Votre panier est vide :(</div>';
 } else {
     ?>
     <table class="table table-stripped table-bordered">
@@ -53,13 +45,13 @@ if( empty($_SESSION['panier']) ){
             <td><?= $_SESSION['panier']['agence'] ?></td>
             <td><?= $_SESSION['panier']['vehicule'] ?></td>
             <td><?= $_SESSION['panier']['titre'] ?></td>
-            <td><?= date('Y-m-d', $_SESSION['panier']['dated']) ?></td>
-            <td><?= date('Y-m-d', $_SESSION['panier']['datef']) ?></td>
+            <td><?= $_SESSION['panier']['dated'] ?></td>
+            <td><?= $_SESSION['panier']['datef'] ?></td>
             <td><?=$_SESSION['panier']['prix_journalier'] ?></td>
         </tr>
         <tr class="bg-info text-light">
             <th colspan="4" class="text-right">Total</th>
-            <th colspan="2" class="text-right"><?= $_SESSION['prix_journalier'] ?> €</th>
+            <th colspan="2" class="text-right"><?= $_SESSION['panier']['prix_total'] ?> €</th>
         </tr>
         <?php 
         if( isConnected() ){
@@ -74,7 +66,7 @@ if( empty($_SESSION['panier']) ){
             ?>
             <tr>
                 <td colspan="6" class="text-center">
-                    Veuillez vous <a href="<?= URL . 'inscription.php' ?>">inscrire</a> ou vous <a href="<?= URL . 'connexion.php' ?>">connecter</a> afin de valider votre panier.
+                    Veuillez vous <a href="" data-toggle="modal" data-target="#inscription">inscrire</a> ou vous <a href="" data-toggle="modal" data-target="#connexion">connecter</a> afin de valider votre panier.
                 </td>
             </tr>
             <?php
