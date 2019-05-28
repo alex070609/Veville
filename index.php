@@ -133,9 +133,14 @@ if( isset($_GET['action']) && $_GET['action'] == 'ok' ){
         <div class="row">
         <?php
         $mot = '';
+
+
+        // ici ma jointure pour comparer les dates et n'afficher que les véhicules dsiponibles
         $vehicule = execReq( "SELECT * FROM vehicule WHERE agences_idagences=:id AND NOT EXISTS (SELECT * FROM commande WHERE vehicule.idvehicule=commande.vehicule_idvehicule AND date_heure_depart < '$date_fin' AND date_heure_fin > '$date_debut' )", array(
             'id' => $_GET['agence']
         ));
+
+
         if( $vehicule->rowCount() != 0 ){
             while( $infoVehicule = $vehicule->fetch() ){
                 ?>
