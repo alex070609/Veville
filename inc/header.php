@@ -14,6 +14,7 @@
     <script src="<?= URL ?>inc/js/main.js"></script>
     <link href="<?= URL . 'inc/css/font-awesome.css' ?>" rel="stylesheet">
     <link rel="stylesheet" href="<?= URL . 'inc/css/style.css'?>">
+    <link rel="shortcut icon" href="<?= URL ?>photo/favicon.ico" type="image/x-icon">
 </head>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
