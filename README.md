@@ -13,5 +13,3 @@ Veville est une entreprise de location de véhicule factisse créer dans le cadr
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
