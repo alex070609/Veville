@@ -113,6 +113,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'affichage') {
         
         $exp_fin = explode('/', $_POST['date_heure_fin']);
         $date_fin = $exp_fin[2] . '-' . $exp_fin[0] . '-' . $exp_fin[1];
+        echo $agence;
         ?>
         <div class="container mt-5 mb-5">
         <div class="row">
